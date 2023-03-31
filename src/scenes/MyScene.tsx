@@ -10,11 +10,11 @@ export function MyScene() {
                 <color attach="background" args={['#333']} />
 
                 {/* Grid cartesiano*/}
-                <gridHelper
+                {/* <gridHelper
                     position={[0, 0, 0]}
                     args={[10, 10, "#84beee", '#202020']}
                     rotation={[Math.PI / 2, 0, 0]}
-                    />
+                    /> */}
                 
                 {/* Objetos */}
                 <Shader />

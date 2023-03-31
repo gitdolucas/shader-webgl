@@ -3,9 +3,9 @@ import { ShaderMaterial } from 'three';
 export function Shader() {
   // .1 to avoid z-fighting 
   const vertices = new Float32Array([
-    5, 0, .1,
-    0, 5, .1,
-    -5, 0, .1,
+    -0.5, -0.5, 0.0,
+     0.5, -0.5, 0.0,
+     0.0,  0.5, 0.0
   ])
   const material = new ShaderMaterial({
     uniforms: {
@@ -18,7 +18,7 @@ export function Shader() {
     `,
     fragmentShader: `
         void main() {
-          gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0); // set the color to yellow (default is red)
+          gl_FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f); // set the color to yellow (default is red)
         }
       `,
   })
