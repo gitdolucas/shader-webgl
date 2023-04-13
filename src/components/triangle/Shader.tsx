@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ShaderMaterial, Vector3 } from 'three';
-import {vertexShader} from './vertexShader';
-import {fragmentShader} from './fragmentShader';
+import { vertexShader } from './vertexShader';
+import { fragmentShader } from './fragmentShader';
 import { useControls } from 'leva';
+import { Plane } from '@react-three/drei';
 
 export function Shader() {
 
   const [lastHover, setLastHover] = useState<Vector3>(new Vector3(0, 0, 0));
-  const {uInnerCircleDistortion, uMaxDist, uVerticals, uInvertion, uBrightness, uDarkAccent, uSharpness} = useControls('Shader Options', {
+  const { uInnerCircleDistortion, uMaxDist, uVerticals, uInvertion, uBrightness, uDarkAccent, uSharpness } = useControls('Shader Options', {
     uBrightness: {
       min: 0.05,
       max: 0.5,
@@ -18,7 +19,7 @@ export function Shader() {
       min: 0.1,
       max: 50,
       value: 0.1,
-      step: 0.5, 
+      step: 0.5,
       label: 'Verticals'
     },
     uDarkAccent: {
@@ -35,8 +36,8 @@ export function Shader() {
     },
     uMaxDist: {
       min: 0,
-      max: 10,
-      value: 10,
+      max: 15,
+      value: 15,
       label: 'Max Distance'
     },
     uInvertion: {
@@ -79,10 +80,14 @@ export function Shader() {
     fragmentShader: fragmentShader,
   })
   return (
-    <mesh onPointerMove={(event) => setLastHover(event.point)}>
-      <bufferGeometry>
-        <bufferAttribute args={[vertices, 3, false]} attach={'attributes-position'} />
-      </bufferGeometry>;
+    <Plane args={[20, 10]} onPointerMove={(event) => setLastHover(event.point)}>
       <shaderMaterial attach="material" args={[material]} />
-    </mesh>)
+    </Plane>
+    // <mesh onPointerMove={(event) => setLastHover(event.point)}>
+    //   <bufferGeometry>
+    //     <bufferAttribute args={[vertices, 3, false]} attach={'attributes-position'} />
+    //   </bufferGeometry>;
+    //   <shaderMaterial attach="material" args={[material]} />
+    // </mesh>
+  )
 }

@@ -1,12 +1,13 @@
 import { OrbitControls, Sphere, Stats, Box } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Shader } from "../components/Shader";
+import { Shader } from "../components/triangle/Shader";
+import { PlaneShader } from "../components/plane/PlaneShader";
 export function MyScene() {
 
     return (
         <div style={{ width: "100%", height: "100vh" }}>
 
-            <Canvas >
+            <Canvas orthographic camera={{zoom: 60}}>
                 <color attach="background" args={['#333']} />
 
                 {/* Grid cartesiano*/}
@@ -18,9 +19,10 @@ export function MyScene() {
                 
                 {/* Objetos */}
                 <Shader />
+                {/* <PlaneShader /> */}
 
                 {/* Controle de câmera */}
-                <OrbitControls />
+                {/* <OrbitControls camera={{}}/> */}
 
                 {/* Status app */}
                 <Stats showPanel={0} className="stats"  />
